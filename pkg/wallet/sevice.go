@@ -114,3 +114,12 @@ func (s *Service) Pay(accountID int64, amount types.Money, category types.Paymen
 	s.payments = append(s.payments, payment)
 	return payment, nil
 }
+
+func (s *Service) FindAccountById(accountID int64) (*types.Account, error) {
+	for _, account := range s.accounts {
+		if account.ID == accountID {
+			return account, nil
+		}
+	}
+	return nil, ErrAccountNotFound
+}
