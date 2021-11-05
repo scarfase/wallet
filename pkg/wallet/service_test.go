@@ -6,7 +6,7 @@ import (
 	"github.com/scarfase/wallet/pkg/types"
 )
 
-func TestService_FindAccountById_notFound(t *testing.T) {
+func TestService_FindAccountByID_notFound(t *testing.T) {
 	accounts := &Service{
 		accounts: []*types.Account{
 			{
@@ -14,13 +14,13 @@ func TestService_FindAccountById_notFound(t *testing.T) {
 			},
 		},
 	}
-	_, err := accounts.FindAccountById(1234)
-	if err != nil {
+	_, err := accounts.FindAccountByID(1234)
+	if err == nil {
 		t.Error(err)
 	}
 }
 
-func TestService_FindAccountById_Found(t *testing.T) {
+func TestService_FindAccountByID_Found(t *testing.T) {
 	accounts := &Service{
 		accounts: []*types.Account{
 			{
@@ -28,7 +28,7 @@ func TestService_FindAccountById_Found(t *testing.T) {
 			},
 		},
 	}
-	account, err := accounts.FindAccountById(123)
+	account, err := accounts.FindAccountByID(123)
 	if err != nil {
 		t.Error(account)
 	}
